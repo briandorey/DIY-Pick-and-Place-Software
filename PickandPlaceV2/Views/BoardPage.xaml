@@ -1,0 +1,209 @@
+﻿<Page x:Class="PickandPlaceV2.Pages.BoardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PickandPlaceV2.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="BoardPage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <DockPanel LastChildFill="False">
+
+        <StackPanel    DockPanel.Dock="Top">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="64"/>
+                    <ColumnDefinition Width="64"/>
+                    <ColumnDefinition Width="64"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="ItemTitle" Text="Please Load PCB File" Style="{StaticResource Heading2}" Grid.Column="0" />
+                <TextBox x:Name="csfeeder" Text="20" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20"/>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Width="64" Height="64" ToolTip="View Loaded PCB" x:Name="bt_ViewPCB"    Grid.Column="3" Click="bt_ViewPCB_Click"
+         Style="{StaticResource BackGoundButton}">
+                    <Rectangle Width="30"
+              Height="30">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_new_window}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                </Button>
+
+                <Button  HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Width="64" Height="64" ToolTip="Save PCB File" x:Name="bt_Save"    Grid.Column="2" Click="bt_Save_Click"  Style="{StaticResource BackGoundButton}">
+                    <Rectangle Width="30"
+              Height="30">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_save}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                </Button>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Width="64" Height="64" ToolTip="Load PCB File" x:Name="bt_Load"    Grid.Column="1" Click="bt_Load_Click"   Style="{StaticResource BackGoundButton}">
+                    <Rectangle Width="40"
+              Height="30">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_folder_open}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                </Button>
+            </Grid>
+            <Label x:Name="lblInfo" />
+            <Label x:Name="lblActive" />
+        </StackPanel >
+
+
+
+
+        <Grid  DockPanel.Dock="Bottom" Height="130" MinHeight="130">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource BackGoundButton}"
+                        Width="100" Height="76" ToolTip="Start" x:Name="bt_Start" Click="bt_Start_Click"  Grid.Column="0">
+
+                <StackPanel>
+                    <Rectangle Width="40"
+              Height="40">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_control_play}" />
+                        </Rectangle.Fill>
+
+                    </Rectangle>
+                    <TextBlock Style="{StaticResource BackGoundButtonText}">Start</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="100" Height="76" ToolTip="Stop" x:Name="bt_Stop" Click="bt_Stop_Click"  Grid.Column="1"
+        Style="{StaticResource BackGoundButton}">
+                <StackPanel>
+                    <Rectangle Width="40"
+              Height="40">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_control_stop}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Style="{StaticResource BackGoundButtonText}">Stop</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="100" Height="76" ToolTip="Home" x:Name="bt_Home" Click="bt_HomeAll_Click"  Grid.Column="2"
+        Style="{StaticResource BackGoundButton}">
+                <StackPanel>
+                    <Rectangle Width="40"
+              Height="40">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_home}" />
+                        </Rectangle.Fill>
+
+                    </Rectangle>
+                    <TextBlock Style="{StaticResource BackGoundButtonText}">Home</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="100" Height="76" ToolTip="Check All" x:Name="bt_CheckAll" Click="bt_CheckAll_Click"  Grid.Column="3"
+        Style="{StaticResource BackGoundButton}">
+                <StackPanel>
+                    <Rectangle Width="40"
+              Height="40">
+
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_checkmark}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Style="{StaticResource BackGoundButtonText}">Check All</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="100" Height="76" ToolTip="Uncheck All" x:Name="bt_UnCheckAll" Click="bt_UnCheckAll_Click"  Grid.Column="4"
+        Style="{StaticResource BackGoundButton}">
+                <StackPanel>
+                    <Rectangle Width="40"
+              Height="40">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_checkmark_uncrossed}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Style="{StaticResource BackGoundButtonText}">Uncheck All</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="100" Height="76" ToolTip="Activate Chip Feeder" x:Name="bt_ChipFeeder" Click="bt_ChipFeeder_Click"  Grid.Column="5"
+        Style="{StaticResource BackGoundButton}">
+                <StackPanel>
+                    <Rectangle Width="40"
+              Height="40">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_cog}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Style="{StaticResource BackGoundButtonText}">Chip Feeder</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="100" Height="76" ToolTip="E-Stop" x:Name="bt_eStop" Click="bt_eStop_Click"  Grid.Column="6"
+        Style="{StaticResource BackGoundButton}">
+                <StackPanel>
+                    <Rectangle Width="40"
+              Height="40">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_sign_stop}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Style="{StaticResource BackGoundButtonText}">E-Stop</TextBlock>
+                </StackPanel>
+            </Button>
+          
+        </Grid>
+
+        <Grid MinHeight="130">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+                
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="0">
+
+            <DataGrid x:Name="_dgComponents"  AutoGenerateColumns="false" CanUserSortColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" Width="Auto"  Margin="5" SelectionChanged="_dgComponents_SelectionChanged"  IsSynchronizedWithCurrentItem="True"  Style="{StaticResource AzureDataGrid}">
+            
+            </DataGrid>
+
+        </ScrollViewer>
+            <ScrollViewer Grid.Column="1">
+                <DataGrid x:Name="_dgFeeders"  AutoGenerateColumns="false" CanUserSortColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" Width="Auto"  Margin="5"   IsSynchronizedWithCurrentItem="True"  Style="{StaticResource AzureDataGrid}" />
+            </ScrollViewer>
+        </Grid>
+       
+    </DockPanel>
+</Page>
