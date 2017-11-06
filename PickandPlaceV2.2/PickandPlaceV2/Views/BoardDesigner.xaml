@@ -1,0 +1,222 @@
+﻿<Page x:Class="PickandPlaceV2.Views.BoardDesigner"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PickandPlaceV2.Views"
+      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000" PreviewMouseWheel="mainframe_PreviewMouseWheel"
+      Title="BoardDesigner">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <DockPanel LastChildFill="False">
+        <StackPanel    DockPanel.Dock="Top">
+
+            <TextBlock Text="Board Designer" Style="{StaticResource Heading2}" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="*" />
+
+                </Grid.ColumnDefinitions>
+                <Grid  Grid.Row="0" Grid.Column="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Width="64" Height="64" Margin="5"   x:Name="bt_Left" Grid.Row="0" Grid.Column="0"   Grid.RowSpan="2"   PreviewMouseDown="bt_MoveYMinus_PreviewMouseDown" PreviewMouseUp="bt_MoveStop" 
+         Style="{StaticResource BackGoundButton}">
+                        <Rectangle Width="30"
+              Height="30">
+                            <Rectangle.Fill>
+                                <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_arrow_left}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+
+                        </Button>
+                        <Button
+                        Width="64" Height="64" Margin="5"   x:Name="bt_Right" Grid.Row="0" Grid.Column="2"  Grid.RowSpan="2"     PreviewMouseDown="bt_MoveYPlus_PreviewMouseDown" PreviewMouseUp="bt_MoveStop"
+         Style="{StaticResource BackGoundButton}">
+                            <Rectangle Width="30"
+              Height="30">
+                                <Rectangle.Fill>
+                                    <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_arrow_right}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            </Button>
+                            <Button
+                        Width="64" Height="64" Margin="5"  x:Name="bt_Up" Grid.Row="0" Grid.Column="1"  PreviewMouseDown="bt_MoveXPlus_PreviewMouseDown" PreviewMouseUp="bt_MoveStop" 
+         Style="{StaticResource BackGoundButton}">
+                                <Rectangle Width="30"
+              Height="30">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_arrow_up}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+
+                                </Button>
+                                <Button Width="64" Height="64" Margin="5"   x:Name="bt_Down"  Grid.Row="1" Grid.Column="1"  PreviewMouseDown="bt_MoveXMinus_PreviewMouseDown" PreviewMouseUp="bt_MoveStop" 
+         Style="{StaticResource BackGoundButton}">
+                                    <Rectangle Width="30"
+              Height="30">
+                                        <Rectangle.Fill>
+                                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_arrow_down}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+
+                                    </Button>
+                </Grid>
+                <!-- End of Arrows Grid-->
+                <Grid  Grid.Row="0" Grid.Column="1" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="X" Grid.Row="0" Grid.Column="0"  Margin="5" TextAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txt_CameraX"  Grid.Row="0" Grid.Column="1" Margin="5,5,30,5" Text="0.0" />
+                    <TextBlock Text="Y" Grid.Row="0" Grid.Column="2"  Margin="5" TextAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txt_CameraY"  Grid.Row="0" Grid.Column="3" Margin="5"  Text="0.0"/>
+
+                    <Button x:Name="bt_GetDRO" Content="Update"  Margin="5" Click="bt_GetDRO_Click" Grid.Row="0" Grid.Column="4"/>
+                    <!-- row 2-->
+                    <TextBlock Text="Component" Grid.Row="1" Grid.Column="0"  Margin="5" TextAlignment="Right" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="dd_ComponentSelect" Grid.Row="1" Grid.Column="1"  Margin="5,5,30,5" ></ComboBox>
+                    <TextBlock Text="Rotation" Grid.Row="1" Grid.Column="2"  Margin="5" TextAlignment="Right" VerticalAlignment="Center" />
+                    <TextBox x:Name="txt_Rotate"  Grid.Row="1" Grid.Column="3" Margin="5"  Text="0" />
+                    <StackPanel   Grid.Row="1" Grid.Column="4">
+                        <RadioButton x:Name="check_1" GroupName="PickerNozzle" Content="1" IsChecked="True"  FlowDirection="LeftToRight" Width="30"/>
+                        <RadioButton  x:Name="check_2" GroupName="PickerNozzle" Content="2" FlowDirection="LeftToRight" Width="30" />
+                    </StackPanel>
+                    <!-- Row 3-->
+                    <TextBlock Text="Jog Speed" Margin="5" Grid.Row="2" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" />
+
+                    <ComboBox Name="dd_distance" SelectedIndex="0"  Margin="5,5,30,5" Grid.Row="2" Grid.Column="1" >
+                        <ComboBoxItem>5.0</ComboBoxItem>
+                        <ComboBoxItem>2.0</ComboBoxItem>
+                        <ComboBoxItem>1.0</ComboBoxItem>
+                        <ComboBoxItem>0.5</ComboBoxItem>
+                        <ComboBoxItem>0.1</ComboBoxItem>
+                        <ComboBoxItem>0.05</ComboBoxItem>
+                    </ComboBox>
+                    <TextBlock Text="Ref ID" Grid.Row="2" Grid.Column="2"  Margin="5" TextAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txt_ComName"  Grid.Row="2" Grid.Column="3" Margin="5" />
+                    <Button x:Name="bt_addrow" Content="Add" Margin="5"  Grid.Row="3" Grid.Column="4" Click="bt_addrow_Click"/>
+                    <Label x:Name="lblInfo" />
+                </Grid>
+
+            </Grid>
+
+        </StackPanel>
+        <Grid  DockPanel.Dock="Bottom" Height="130" MinHeight="130">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+
+            </Grid.ColumnDefinitions>
+
+
+            <Controls:ToggleSwitch OnLabel="On" OffLabel="Off" Header="Head LED"  HorizontalAlignment="Left" Checked="chk_HeadLED_Checked" Unchecked="chk_HeadLED_Unchecked" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
+            <TextBlock Text="PCB Name" Margin="5" Grid.Row="0" Grid.Column="1" TextAlignment="Right" VerticalAlignment="Center" />
+            <TextBox x:Name="txt_BoardName"  Grid.Row="0" Grid.Column="2" Margin="5,5" Text="" Height="25" />
+            <TextBlock Text="PCB Height" Margin="5" Grid.Row="0" Grid.Column="3" TextAlignment="Right" VerticalAlignment="Center" />
+            <TextBox x:Name="txt_BoardHeight"  Grid.Row="0" Grid.Column="4" Margin="5,5" Text="1.6" Height="25" />
+
+
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="76" Height="76" Margin="10" ToolTip="Camera" x:Name="bt_Stop"    Grid.Column="5" Click="button1_Click" 
+         Style="{StaticResource BackGoundButton}">
+                <Rectangle Width="30"
+              Height="30">
+                    <Rectangle.Fill>
+                        <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_camera}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                </Button>
+
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="76" Height="76" Margin="10" ToolTip="Home" x:Name="bt_Home"    Grid.Column="6"  Click="bt_HomeAll_Click" 
+         Style="{StaticResource BackGoundButton}">
+                    <Rectangle Width="30"
+              Height="30">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_home}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                    </Button>
+
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="76" Height="76" Margin="10" ToolTip="Save File" x:Name="bt_SaveFle"    Grid.Column="7" Click="bt_SaveFle_Click" 
+         Style="{StaticResource BackGoundButton}">
+                        <Rectangle Width="30"
+              Height="30">
+                            <Rectangle.Fill>
+                                <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_save}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+
+                        </Button>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="76" Height="76" Margin="10"  ToolTip="E-Stop" x:Name="bt_eStop"    Grid.Column="8" Click="bt_eStop_Click" 
+         Style="{StaticResource BackGoundButton}">
+                            <Rectangle Width="30"
+              Height="30">
+                                <Rectangle.Fill>
+                                    <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_sign_stop}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            </Button>
+        </Grid>
+
+        <ScrollViewer>
+
+            <DataGrid x:Name="_dgBoard" AutoGenerateColumns="false" CanUserAddRows="False" CanUserDeleteRows="True" Width="Auto"  Margin="5" SelectionChanged="_dgBoard_SelectionChanged"/>
+
+        </ScrollViewer>
+    </DockPanel>
+</Page>
