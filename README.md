@@ -3,9 +3,13 @@ Pick and Place Controller Software 2017 Update
 
 This new version of the Pick and Place application is a Windows C# application to run a DIY pick and place machine via A KFlop motion controller and Windows PC with a custom USB controller board to control feeders and other hardware interfaces. 
 
+Version 2.2 release  6th Nov 2017. I have changed the software to use Aforge.net for vision from http://www.aforgenet.com/ and also changed the component system to allow different speeds for picking and placement on a per component level.
+
 The software is built using C# and the MahApps.Metro UI toolkit from http://mahapps.com/
 
-The camera vision uses Emgu CV from http://www.emgu.com/wiki/index.php/Main_Page which uses a basic usb microscope camera to look down on to the pcb to locate the parts. This is saved into a XML data file as a series of X & Y locations and the control software adds the correct offset depending on the selected picker nozzle.
+Version 2: The camera vision uses Emgu CV from http://www.emgu.com/wiki/index.php/Main_Page which uses a basic usb microscope camera to look down on to the pcb to locate the parts. This is saved into a XML data file as a series of X & Y locations and the control software adds the correct offset depending on the selected picker nozzle.
+
+
 
 The USB controller board prototype is on http://briandorey.com/post/pick-and-place-controller-v3-part-1.aspx
 
