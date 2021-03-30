@@ -1,0 +1,257 @@
+﻿<Page x:Class="PickandPlaceV2.Pages.BoardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PickandPlaceV2.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1200"
+      Title="BoardPage" Unloaded="Page_Unloaded">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <DockPanel LastChildFill="False">
+
+        <StackPanel Height="64"   DockPanel.Dock="Top">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="ItemTitle" Text="Please Load PCB File" Style="{StaticResource Heading2}" Grid.Column="0" />
+                
+                
+                <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="64" Height="64" ToolTip="Check All" x:Name="bt_CheckAll" Click="Bt_CheckAll_Click"  Grid.Column="4"
+        Style="{StaticResource BackGoundButton}">
+                    <StackPanel>
+                        <Rectangle Width="30"
+              Height="30">
+
+                            <Rectangle.Fill>
+                                <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_checkmark}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                       
+                    </StackPanel>
+                </Button>
+                <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="64" Height="64" ToolTip="Uncheck All" x:Name="bt_UnCheckAll" Click="Bt_UnCheckAll_Click"  Grid.Column="5"
+        Style="{StaticResource BackGoundButton}">
+                    <StackPanel>
+                        <Rectangle Width="30"
+              Height="30">
+                            <Rectangle.Fill>
+                                <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_checkmark_uncrossed}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                     
+                    </StackPanel>
+                </Button>
+               
+                <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="64" Height="64" ToolTip="E-Stop" x:Name="bt_eStop" Click="Bt_eStop_Click"  Grid.Column="6"
+        Style="{StaticResource BackGoundButton}">
+                    <StackPanel>
+                        <Rectangle Width="30"
+              Height="30" Fill="Red">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_sign_stop}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </StackPanel>
+                </Button>
+
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Width="64" Height="64" ToolTip="Load PCB File" x:Name="bt_Load"    Grid.Column="7" Click="Bt_Load_Click"   Style="{StaticResource BackGoundButton}">
+                    <Rectangle Width="40"
+              Height="30" Fill="Orange">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_folder_open}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+
+                </Button>
+                <Button  HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Width="64" Height="64" ToolTip="Save PCB File" x:Name="bt_Save"    Grid.Column="8" Click="Bt_Save_Click"  Style="{StaticResource BackGoundButton}">
+                    <Rectangle Width="30"
+              Height="30" Fill="Blue">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_save}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+
+                </Button>
+
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Width="64" Height="64" ToolTip="View Loaded PCB" x:Name="bt_ViewPCB"    Grid.Column="9" Click="Bt_ViewPCB_Click"
+         Style="{StaticResource BackGoundButton}">
+                    <Rectangle Width="30"
+              Height="30">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_new_window}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                </Button>
+                <TextBox x:Name="csfeeder" Margin="10" Text="20" Grid.Column="10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                <CheckBox Grid.Column="11" Margin="10" x:Name="pickdelay" HorizontalAlignment="Center"  VerticalAlignment="Center" Content="High Speed" IsChecked="True" />
+            </Grid>
+            <Label x:Name="lblInfo" />
+            <Label x:Name="lblActive" />
+        </StackPanel >
+
+
+        <Grid  Height="Auto" MinWidth="1200" HorizontalAlignment="Stretch" 
+        VerticalAlignment="Stretch" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            
+            <Grid Grid.Row="0" Grid.Column="0 " HorizontalAlignment="Stretch" 
+        VerticalAlignment="Stretch" Margin="0 0 20 0"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="320" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+
+                <ComboBox x:Name="CaptureSelect"  VerticalAlignment="Top" SelectionChanged="CaptureSelect_SelectionChanged"  HorizontalAlignment="Stretch" 
+        Margin="0 0 10 0" Grid.Row="0" >
+                        <ComboBoxItem>Video Off</ComboBoxItem>
+                        <ComboBoxItem>Base Camera</ComboBoxItem>
+                        <ComboBoxItem>Head Camera</ComboBoxItem>
+                    </ComboBox>
+                <Image x:Name="CapturedImageBox" HorizontalAlignment="Stretch" Height="300" VerticalAlignment="Top" Margin="0 10 0 10" Grid.Row="1"  />
+                
+                <TextBox x:Name="resultText" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="3"  />
+
+                    
+               
+
+                <Grid  Margin="0 10 0 10"  Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+
+                    </Grid.RowDefinitions>
+
+
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource BackGoundButton}"
+                        Width="100" Height="100" ToolTip="Start" x:Name="bt_Start" Click="Bt_Start_Click" Grid.Column="0"  >
+
+                        <StackPanel>
+                            <Rectangle Width="60"
+              Height="60" Fill="Green">
+                                <Rectangle.OpacityMask >
+
+                                    <VisualBrush Stretch="Fill" 
+                    Visual="{StaticResource appbar_control_play}" />
+                                </Rectangle.OpacityMask>
+
+                            </Rectangle>
+
+                        </StackPanel>
+                    </Button>
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="100" Height="100" ToolTip="Stop" x:Name="bt_Stop" Click="Bt_Stop_Click"  
+        Style="{StaticResource BackGoundButton}"  Grid.Column="1">
+                        <StackPanel>
+                            <Rectangle Width="60"
+              Height="60" Fill="Red">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_control_stop}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+
+                        </StackPanel>
+                    </Button>
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Center"  Grid.Column="2"
+                        Width="100" Height="100" ToolTip="Home" x:Name="bt_Home" Click="Bt_HomeAll_Click"          Style="{StaticResource BackGoundButton}">
+                        <StackPanel>
+                            <Rectangle Width="60"
+              Height="60">
+                                <Rectangle.Fill>
+                                    <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_home}" />
+                                </Rectangle.Fill>
+
+                            </Rectangle>
+
+                        </StackPanel>
+                    </Button>
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Width="100" Height="100" ToolTip="Activate Chip Feeder" x:Name="bt_ChipFeeder" Click="Bt_ChipFeeder_Click"  Grid.Column="3"
+        Style="{StaticResource BackGoundButton}">
+                        <StackPanel>
+                            <Rectangle Width="60"
+              Height="60">
+                                <Rectangle.Fill>
+                                    <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_cog}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+           </Grid>
+            <StackPanel Grid.Column="1" Grid.Row="0" >
+
+
+                <ScrollViewer  Height="250"  Width="Auto" >
+                    <DataGrid x:Name="_dgFeeders"  AutoGenerateColumns="false" CanUserSortColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" Width="Auto"    IsSynchronizedWithCurrentItem="True"  Style="{StaticResource AzureDataGrid}" />
+                </ScrollViewer>
+
+
+                <ScrollViewer    Width="Auto" Height="480"
+                  >
+
+                    <DataGrid x:Name="_dgComponents"  AutoGenerateColumns="false" CanUserSortColumns="False" CanUserAddRows="False" CanUserDeleteRows="True" Width="Auto"  SelectionChanged="_dgComponents_SelectionChanged"  IsSynchronizedWithCurrentItem="True"  Style="{StaticResource AzureDataGrid}" HorizontalAlignment="Stretch" >
+
+                    </DataGrid>
+
+                </ScrollViewer>
+            </StackPanel>
+
+
+        </Grid>
+       
+    </DockPanel>
+</Page>

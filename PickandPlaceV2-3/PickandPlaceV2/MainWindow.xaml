@@ -1,0 +1,84 @@
+﻿<Controls:MetroWindow x:Class="PickandPlaceV2.MainWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:PickandPlaceV2"
+                       GlowBrush="{DynamicResource AccentColorBrush}"
+                  Icon="Resources/appbar.cog.ico"
+        ShowIconOnTitleBar="True"    
+        Title="Pick and Place V2" Height="900" Width="1220">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+
+
+    </Window.Resources>
+  
+
+    
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Click="Button_Home_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20"
+                   Height="20"
+                   Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_home}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="home all" />
+                </StackPanel>
+            </Button>
+            <Button Click="Button_FlushVac_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20"
+                   Height="20"
+                   Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_warning_circle}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="flush vac" />
+                </StackPanel>
+            </Button>
+
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+
+    <Grid>
+        <TabControl HorizontalAlignment="Stretch"
+               
+                    Margin="10,10,0,0"
+                    VerticalAlignment="Stretch"
+                
+                    SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Header="Build PCB">
+                <Frame Source="/Views/BoardPage.xaml"  />
+            </TabItem>
+            <TabItem Header="PCB Designer">
+
+                <Frame Source="/Views/BoardDesigner.xaml"  />
+            </TabItem>
+            <TabItem Header="Manual Control">
+                <Frame Source="/Views/ManualControl.xaml"  />
+            </TabItem>
+            <TabItem Header="Components Editor">
+                <Frame Source="/Views/ComponentsEditor.xaml"  />
+            </TabItem>
+        </TabControl>
+      
+    </Grid>
+    
+
+</Controls:MetroWindow>
